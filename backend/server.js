@@ -78,8 +78,10 @@ async function initDatabase() {
                 ADD COLUMN user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
             `);
         }
+        console.log('База данных готова к работе');
     } catch (error) {
-        // Database initialization error
+        console.error('Ошибка инициализации БД:', error.message);
+        process.exit(1);
     }
 }
 
@@ -187,6 +189,7 @@ app.get('/api/orders', authenticateToken, async (req, res) => {
 });
 
 // Запуск сервера
-app.listen(PORT, '0.0.0.0', () => {
-    initDatabase();
+app.listen(PORT, '0.0.0.0', async () => {
+    await initDatabase();
+    console.log(`Сервер запущен на порту ${PORT}`);
 });
