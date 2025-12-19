@@ -38,50 +38,58 @@ function authenticateToken(req, res, next) {
 }
 
 // Создание таблиц в базе данных при запуске сервера
-async function initDatabase() {
-    try {
-        await pool.query(`
-            CREATE TABLE IF NOT EXISTS users (
-                id SERIAL PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
-                email VARCHAR(255) UNIQUE NOT NULL,
-                password VARCHAR(255) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-
-        await pool.query(`
-            CREATE TABLE IF NOT EXISTS orders (
-                id SERIAL PRIMARY KEY,
-                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-                name VARCHAR(255) NOT NULL,
-                phone VARCHAR(50) NOT NULL,
-                email VARCHAR(255) NOT NULL,
-                address TEXT NOT NULL,
-                size VARCHAR(10) NOT NULL,
-                product VARCHAR(255) NOT NULL,
-                price VARCHAR(50) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        `);
-
-        // Миграция: добавление user_id в существующую таблицу orders
-        const checkColumn = await pool.query(`
-            SELECT column_name 
-            FROM information_schema.columns 
-            WHERE table_name='orders' AND column_name='user_id'
-        `);
-        
-        if (checkColumn.rows.length === 0) {
+async function initDatabase(retries = 10) {
+    for (let attempt = 1; attempt <= retries; attempt++) {
+        try {
             await pool.query(`
-                ALTER TABLE orders 
-                ADD COLUMN user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+                CREATE TABLE IF NOT EXISTS users (
+                    id SERIAL PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    email VARCHAR(255) UNIQUE NOT NULL,
+                    password VARCHAR(255) NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
             `);
+
+            await pool.query(`
+                CREATE TABLE IF NOT EXISTS orders (
+                    id SERIAL PRIMARY KEY,
+                    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+                    name VARCHAR(255) NOT NULL,
+                    phone VARCHAR(50) NOT NULL,
+                    email VARCHAR(255) NOT NULL,
+                    address TEXT NOT NULL,
+                    size VARCHAR(10) NOT NULL,
+                    product VARCHAR(255) NOT NULL,
+                    price VARCHAR(50) NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            `);
+
+            // Миграция: добавление user_id в существующую таблицу orders
+            const checkColumn = await pool.query(`
+                SELECT column_name 
+                FROM information_schema.columns 
+                WHERE table_name='orders' AND column_name='user_id'
+            `);
+            
+            if (checkColumn.rows.length === 0) {
+                await pool.query(`
+                    ALTER TABLE orders 
+                    ADD COLUMN user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+                `);
+            }
+            console.log('База данных готова к работе');
+            return;
+        } catch (error) {
+            if (attempt < retries) {
+                console.log(`Попытка подключения ${attempt}/${retries} не удалась. Повтор через 2 сек...`);
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            } else {
+                console.error('Ошибка инициализации БД после всех попыток:', error.message);
+                process.exit(1);
+            }
         }
-        console.log('База данных готова к работе');
-    } catch (error) {
-        console.error('Ошибка инициализации БД:', error.message);
-        process.exit(1);
     }
 }
 
