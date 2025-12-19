@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopShopShopShop - Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu">&times;</button>
+        <h3>Категории</h3>
+        <div class="menu-categories">
+            <div class="menu-category">
+                <h4 class="menu-category-title">Мужская одежда</h4>
+                <ul class="menu-subcategories">
+                    <li><a href="#" data-category="men" data-subcategory="jeans">Джинсы</a></li>
+                    <li><a href="#" data-category="men" data-subcategory="outerwear">Верхняя одежда</a></li>
+                    <li><a href="#" data-category="men" data-subcategory="shirts">Рубашки</a></li>
+                </ul>
+            </div>
+            <div class="menu-category">
+                <h4 class="menu-category-title">Женская одежда</h4>
+                <ul class="menu-subcategories">
+                    <li><a href="#" data-category="women" data-subcategory="jeans">Джинсы</a></li>
+                    <li><a href="#" data-category="women" data-subcategory="outerwear">Верхняя одежда</a></li>
+                    <li><a href="#" data-category="women" data-subcategory="skirts">Юбки</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <div class="logo">ShopShopShopShop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Главная</a></li>
+                    <li><a href="index.html#categories">Категории</a></li>
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="login.html">Войти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="login-page">
+            <div class="auth-container">
+                <div class="auth-box" id="loginBox">
+                    <h2>Вход</h2>
+                    <form id="loginForm">
+                        <input type="email" id="loginEmail" placeholder="Email" required>
+                        <input type="password" id="loginPassword" placeholder="Пароль" required>
+                        <div id="loginError" class="error-message" style="display: none;"></div>
+                        <button type="submit" class="auth-btn">Войти</button>
+                    </form>
+                    <p>Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a></p>
+                </div>
+
+                <div class="auth-box" id="registerBox" style="display: none;">
+                    <h2>Регистрация</h2>
+                    <form id="registerForm">
+                        <input type="text" id="registerName" placeholder="Имя" maxlength="12" required>
+                        <input type="email" id="registerEmail" placeholder="Email" required>
+                        <input type="password" id="registerPassword" placeholder="Пароль" minlength="6" required>
+                        <div id="registerError" class="error-message" style="display: none;"></div>
+                        <button type="submit" class="auth-btn">Зарегистрироваться</button>
+                    </form>
+                    <p>Уже есть аккаунт? <a href="#" id="showLogin">Войти</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>ShopShopShopShop 2025. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/login.js?v=2"></script>
+</body>
+</html>

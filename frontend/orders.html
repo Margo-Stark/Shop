@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopShopShopShop - Мои заказы</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu">&times;</button>
+        <h3>Категории</h3>
+        <div class="menu-categories">
+            <div class="menu-category">
+                <h4 class="menu-category-title">Мужская одежда</h4>
+                <ul class="menu-subcategories">
+                    <li><a href="#" data-category="men" data-subcategory="jeans">Джинсы</a></li>
+                    <li><a href="#" data-category="men" data-subcategory="outerwear">Верхняя одежда</a></li>
+                    <li><a href="#" data-category="men" data-subcategory="shirts">Рубашки</a></li>
+                </ul>
+            </div>
+            <div class="menu-category">
+                <h4 class="menu-category-title">Женская одежда</h4>
+                <ul class="menu-subcategories">
+                    <li><a href="#" data-category="women" data-subcategory="jeans">Джинсы</a></li>
+                    <li><a href="#" data-category="women" data-subcategory="outerwear">Верхняя одежда</a></li>
+                    <li><a href="#" data-category="women" data-subcategory="skirts">Юбки</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <div class="logo">ShopShopShopShop</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#categories">Категории</a></li>
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li id="cartLink" style="display: none;"><a href="cart.html">Корзина <span id="cartCount" class="cart-badge">0</span></a></li>
+                    <li id="ordersLink" style="display: none;"><a href="orders.html">Мои заказы (<span id="orderCount">0</span>)</a></li>
+                    <li id="authLink"><a href="login.html">Войти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="orders-page">
+            <h1>Мои заказы</h1>
+            <div class="orders-container" id="ordersContainer">
+                <p class="no-orders">У вас пока нет заказов</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>ShopShopShopShop 2025. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/orders.js"></script>
+</body>
+</html>

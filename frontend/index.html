@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopShopShopShop - Главная</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu">&times;</button>
+        <h3>Категории</h3>
+        <div class="menu-categories">
+            <div class="menu-category">
+                <h4 class="menu-category-title">Мужская одежда</h4>
+                <ul class="menu-subcategories">
+                    <li><a href="#" data-category="men" data-subcategory="jeans">Джинсы</a></li>
+                    <li><a href="#" data-category="men" data-subcategory="outerwear">Верхняя одежда</a></li>
+                    <li><a href="#" data-category="men" data-subcategory="shirts">Рубашки</a></li>
+                </ul>
+            </div>
+            <div class="menu-category">
+                <h4 class="menu-category-title">Женская одежда</h4>
+                <ul class="menu-subcategories">
+                    <li><a href="#" data-category="women" data-subcategory="jeans">Джинсы</a></li>
+                    <li><a href="#" data-category="women" data-subcategory="outerwear">Верхняя одежда</a></li>
+                    <li><a href="#" data-category="women" data-subcategory="skirts">Юбки</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <div class="logo">ShopShopShopShop</div>
+            <nav>
+                <ul>
+                    <li><a href="#" id="homeLink">Главная</a></li>
+                    <li><a href="#categories">Категории</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li id="cartLink" style="display: none;"><a href="cart.html">Корзина <span id="cartCount" class="cart-badge">0</span></a></li>
+                    <li id="ordersLink" style="display: none;"><a href="orders.html">Заказы (<span id="orderCount">0</span>)</a></li>
+                    <li id="authLink"><a href="login.html">Войти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-image-container">
+                <img src="/images/main.png" alt="Hero" class="hero-bg">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="welcome-text">Добро пожаловать в</span><br>
+                    <span class="shop-name">ShopShopShopShop</span>
+                </h1>
+                <p class="hero-subtitle">Стильная одежда для мужчин и женщин</p>
+            </div>
+        </section>
+
+        <section id="categories" class="categories">
+            <h2>Категории</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="men">
+                    <div class="category-images">
+                        <img src="/images/men/preview.png" alt="Мужская одежда" class="category-preview">
+                        <div class="category-overlay">
+                            <span>Мужская одежда</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-card" data-category="women">
+                    <div class="category-images">
+                        <img src="/images/women/preview.png" alt="Женская одежда" class="category-preview">
+                        <div class="category-overlay">
+                            <span>Женская одежда</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>О нас</h2>
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <h3>Телефон</h3>
+                    <p>+7 (495) 123-45-67</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Адрес магазина</h3>
+                    <p>г. Санкт-Петербург, ул. какая-то, д. 10</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p>shop@shop.ru</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 10:00 - 20:00<br>Сб-Вс: 11:00 - 19:00</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Вход</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Пароль" required>
+                <div id="loginError" class="error-message" style="display: none;"></div>
+                <button type="submit">Войти</button>
+            </form>
+            <p>Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Регистрация</h2>
+            <form id="registerForm">
+                <input type="text" id="registerName" placeholder="Имя" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Пароль" required>
+                <div id="registerError" class="error-message" style="display: none;"></div>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+            <p>Уже есть аккаунт? <a href="#" id="showLogin">Войти</a></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>ShopShopShopShop 2025. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js?v=2"></script>
+</body>
+</html>
