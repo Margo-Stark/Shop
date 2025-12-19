@@ -73,28 +73,22 @@ async function initDatabase() {
         `);
         
         if (checkColumn.rows.length === 0) {
-            console.log('Добавление колонки user_id в таблицу orders...');
             await pool.query(`
                 ALTER TABLE orders 
                 ADD COLUMN user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
             `);
-            console.log('Колонка user_id успешно добавлена');
         }
-
-        console.log('База данных готова к работе');
     } catch (error) {
-        console.log('Ошибка инициализации базы данных:', error.message);
+        // Database initialization error
     }
 }
 
 // Регистрация нового пользователя
 app.post('/api/auth/register', async (req, res) => {
     try {
-        console.log('📝 Получен запрос на регистрацию:', req.body);
         const { name, email, password } = req.body;
 
         if (!name || !email || !password) {
-            console.log('❌ Ошибка: не все поля заполнены');
             return res.status(400).json({ error: 'Заполните все поля' });
         }
 
@@ -194,6 +188,5 @@ app.get('/api/orders', authenticateToken, async (req, res) => {
 
 // Запуск сервера
 app.listen(PORT, '0.0.0.0', () => {
-    console.log('Сервер запущен на порту ' + PORT);
     initDatabase();
 });
