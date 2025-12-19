@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5438/api';
+const API_URL = '/api';
 
 document.addEventListener('DOMContentLoaded', () => {
     setupAuthForms();

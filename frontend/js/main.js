@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5438/api';
+const API_URL = '/api';
 
 const categories = {
     men: {
@@ -82,7 +82,7 @@ async function updateOrderCount() {
     }
     
     try {
-        const response = await fetch('http://localhost:5438/api/orders', {
+        const response = await fetch('/api/orders', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

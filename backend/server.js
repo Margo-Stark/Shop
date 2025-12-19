@@ -90,9 +90,11 @@ async function initDatabase() {
 // Регистрация нового пользователя
 app.post('/api/auth/register', async (req, res) => {
     try {
+        console.log('📝 Получен запрос на регистрацию:', req.body);
         const { name, email, password } = req.body;
 
         if (!name || !email || !password) {
+            console.log('❌ Ошибка: не все поля заполнены');
             return res.status(400).json({ error: 'Заполните все поля' });
         }
 
