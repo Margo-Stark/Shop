@@ -143,6 +143,8 @@ function setupAuthForms() {
 
                 const data = await response.json();
                 if (response.ok) {
+                    // Очистить корзину при регистрации нового пользователя
+                    localStorage.removeItem('cart');
                     registerBox.style.display = 'none';
                     loginBox.style.display = 'block';
                     registerForm.reset();

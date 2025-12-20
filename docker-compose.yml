@@ -33,7 +33,7 @@ services:
       dockerfile: ./frontend/Dockerfile
     container_name: shop_frontend
     ports:
-      - "8080:80"
+      - "80:80"
     restart: unless-stopped
 
 volumes:

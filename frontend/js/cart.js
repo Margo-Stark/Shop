@@ -35,6 +35,7 @@ function checkAuth() {
             e.preventDefault();
             localStorage.removeItem('user');
             localStorage.removeItem('token');
+            localStorage.removeItem('cart');
             window.location.href = 'index.html';
         });
     }

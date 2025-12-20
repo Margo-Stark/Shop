@@ -1,11 +1,15 @@
 @font-face {
     font-family: 'Quickremark';
     src: url('../fonts/Quickremarksdemo.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'Scumbria';
-    src: url('../fonts/Scumbria Regular.otf') format('opentype');
+    src: url('../fonts/Scumbria%20Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
@@ -1012,24 +1016,33 @@ main {
 
 .cart-summary {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     background: #fff;
     border-radius: 15px;
-    padding: 2rem;
+    padding: 3rem 2rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    gap: 2rem;
+    text-align: center;
+}
+
+.summary-info {
+    width: 100%;
 }
 
 .summary-info h3 {
     color: #5f4d75;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 
 .total-price {
     color: #5f4d75;
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .orders-page {
